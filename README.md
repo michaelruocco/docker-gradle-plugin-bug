@@ -126,6 +126,7 @@ no credentials server URL
 For reference the contents of the file at /Users/michaelruocco/.docker/config.json is:
 
 ```
+{
     "auths": {
         "https://index.docker.io/v1/": {}
     },
@@ -141,4 +142,5 @@ For reference the contents of the file at /Users/michaelruocco/.docker/config.js
 I suspect that the problem may be related to the empty auth block for "htts://index.docker/io/v1/": {} but this is a
 complete guess!
 
-A similar, but not the same, issue is also occuring on travis ci builds too.
+A similar, but not the same, issue is also occuring on travis ci builds too an example can be found
+[here](https://travis-ci.org/michaelruocco/docker-gradle-plugin-bug).

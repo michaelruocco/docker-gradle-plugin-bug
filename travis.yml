@@ -1,0 +1,17 @@
+sudo: false
+language: java
+jdk: openjdk11
+
+services:
+  - docker
+
+script:
+  - ./gradlew clean build buildImage pushImage
+
+before_cache:
+  - rm -f $HOME/.gradle/caches/modules-2/modules-2.lock
+
+cache:
+  directories:
+    - $HOME/.gradle/caches/
+    - $HOME/.gradle/wrapper/

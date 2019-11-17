@@ -1,0 +1,37 @@
+plugins {
+    id 'java'
+    id 'com.bmuschko.docker-remote-api' version '6.0.0'
+}
+
+import com.bmuschko.gradle.docker.tasks.image.DockerBuildImage;
+import com.bmuschko.gradle.docker.tasks.image.DockerPushImage;
+
+group 'cmo.github.michaelruocco'
+version '1.0.0-SNAPSHOT'
+
+sourceCompatibility = 11
+targetCompatibility = 11
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    testCompile group: 'junit', name: 'junit', version: '4.12'
+}
+
+docker {
+    registryCredentials {
+        username = System.getenv("DOCKER_USERNAME")
+        password = System.getenv("DOCKER_PASSWORD")
+    }
+}
+
+task buildImage(type: DockerBuildImage) {
+    inputDir.set(file('.'))
+    images.add('michaelruocco/gradle-docker-plugin-bug:latest')
+}
+
+task pushImage(type: DockerPushImage) {
+    images.set(buildImage.images)
+}

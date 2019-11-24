@@ -6,6 +6,7 @@ services:
   - docker
 
 script:
+  - cat /home/travis/.docker/config.json
   - ./gradlew clean build buildImage pushImage
 
 before_cache:
